@@ -3,13 +3,13 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QColor
 from random import randint
-from PyQt5 import uic
+from UI import Ui_MainWindow
 
 
-class YellowOvals(QMainWindow):
+class YellowOvals(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.qp = None
         self.flag = False
         self.pushButton.clicked.connect(self.button_clicked)
@@ -22,7 +22,7 @@ class YellowOvals(QMainWindow):
             self.qp.end()
 
     def draw(self, qp):
-        qp.setBrush(QColor("yellow"))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         count = randint(3, 10)
         for i in range(count):
             x, y = randint(0, self.size().width()), randint(0, self.size().height())
